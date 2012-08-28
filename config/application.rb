@@ -64,5 +64,7 @@ module FriendListJssdk
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.facebook_app_id = ENV['FACEBOOK_APP_ID']
   end
 end

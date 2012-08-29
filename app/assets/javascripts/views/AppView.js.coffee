@@ -9,7 +9,7 @@ class AppView extends Backbone.View
 
   render: ->
     friends = @collection.map (d) -> 
-      '<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.get('name') + ' ">' + d.get('name') + '</li>'
+      '<li><img src="' + d.avatar() + '" alt="' + d.get('name') + ' ">' + d.get('name') + '</li>'
     $(@el).empty().append(friends)
 
   loggedin: ->

@@ -9,10 +9,10 @@ window.fbAsyncInit = function() {
 
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     if(response.status == "connected") {
-      window.friendsView.trigger('facebook:loggedin')
+      window.friendsView.trigger('loggedin')
     }
     else {
-      window.friendsView.trigger('facebook:loggedout')
+      window.friendsView.trigger('loggedout')
     }
   });
 };

@@ -2,8 +2,8 @@ class FriendsView extends Backbone.View
   el: $ '#friends'
 
   initialize: ->
-    @bind 'facebook:loggedin', @loggedin
-    @bind 'facebook:loggedout', @loggedout
+    @bind 'loggedin', @loggedin
+    @bind 'loggedout', @loggedout
     
     @collection = new window.Friends
     @collection.bind 'reset', @render, this

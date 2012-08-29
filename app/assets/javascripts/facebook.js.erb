@@ -6,14 +6,20 @@ window.fbAsyncInit = function() {
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
-  FB.getLoginStatus(function(response) {
-    FB.api('/me/friends', function(r) {
-      var friends = $.map(r.data,function(d){
-        return $('<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.name + ' ">' + d.name + '</li>');
-      });
-      $('#friends').append(friends);
 
-    })
+  FB.Event.subscribe('auth.authResponseChange', function(response) {
+    if(response.status == "connected") {
+      FB.api('/me/friends', function(r) {
+        var friends = $.map(r.data,function(d){
+          return $('<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.name + ' ">' + d.name + '</li>');
+        });
+        $('#friends').empty().append(friends);
+
+      });
+    }
+    else {
+      $('#friends').empty();
+    }
   });
 };
 

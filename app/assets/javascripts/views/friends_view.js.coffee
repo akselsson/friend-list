@@ -1,4 +1,4 @@
-class AppView extends Backbone.View
+class FriendsView extends Backbone.View
   el: $ '#friends'
 
   initialize: ->
@@ -27,4 +27,4 @@ class AppView extends Backbone.View
     'keyup #search': 'render'
 
 
-window.appView = new AppView
+window.friendsView = new FriendsView

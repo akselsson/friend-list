@@ -5,7 +5,7 @@ class window.Friends extends Backbone.Collection
 
   search: (query) ->
     @filter (friend) ->
-      friend.get('name').indexOf(query) != -1
+      friend.get('name').toLowerCase().indexOf(query.toLowerCase()) != -1
 
   fetch: ->
       FB.api '/me/friends', (r) =>

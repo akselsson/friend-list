@@ -2,22 +2,21 @@ class AppView extends Backbone.View
   el: $ '#friends'
 
   initialize: ->
-    @friends = []
     @bind 'facebook:loggedin', @loggedin
     @bind 'facebook:loggedout', @loggedout
+    @collection = new window.Friends
+    @collection.bind 'reset', @render, this
 
   render: ->
-    friends = $.map @friends, (d) ->
-      $('<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.name + ' ">' + d.name + '</li>')
+    friends = @collection.map (d) -> 
+      '<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.get('name') + ' ">' + d.get('name') + '</li>'
     $(@el).empty().append(friends)
 
   loggedin: ->
-      FB.api '/me/friends', (r) =>
-        @friends = r.data
-        @render()
+    @collection.fetch()
 
   loggedout: ->
-    @friends.empty()
+    @collection.empty()
     @render()
 
 

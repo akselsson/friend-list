@@ -9,16 +9,10 @@ window.fbAsyncInit = function() {
 
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     if(response.status == "connected") {
-      FB.api('/me/friends', function(r) {
-        var friends = $.map(r.data,function(d){
-          return $('<li><img src="https://graph.facebook.com/' + d.id + '/picture" alt="' + d.name + ' ">' + d.name + '</li>');
-        });
-        $('#friends').empty().append(friends);
-
-      });
+      window.appView.trigger('facebook:loggedin')
     }
     else {
-      $('#friends').empty();
+      window.appView.trigger('facebook:loggedout')
     }
   });
 };

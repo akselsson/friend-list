@@ -4,13 +4,14 @@ class AppView extends Backbone.View
   initialize: ->
     @bind 'facebook:loggedin', @loggedin
     @bind 'facebook:loggedout', @loggedout
+    
     @collection = new window.Friends
     @collection.bind 'reset', @render, this
 
   render: ->
-    friends = @collection.map (d) -> 
+    friends = @collection.search($("#search").val()).map (d) -> 
       '<li><img src="' + d.avatar() + '" alt="' + d.get('name') + ' ">' + d.get('name') + '</li>'
-    $(@el).empty().append(friends)
+    $(@el).find('ul').empty().append(friends)
 
   loggedin: ->
     @collection.fetch()
@@ -18,6 +19,12 @@ class AppView extends Backbone.View
   loggedout: ->
     @collection.empty()
     @render()
+
+  search: ->
+    @render()
+
+  events:
+    'keyup #search': 'search'
 
 
 window.appView = new AppView

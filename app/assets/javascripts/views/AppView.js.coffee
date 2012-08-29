@@ -9,9 +9,12 @@ class AppView extends Backbone.View
     @collection.bind 'reset', @render, this
 
   render: ->
-    friends = @collection.search($("#search").val()).map (d) -> 
+    friends = @collection.search(@query()).map (d) -> 
       '<li><img src="' + d.avatar() + '" alt="' + d.get('name') + ' ">' + d.get('name') + '</li>'
     $(@el).find('ul').empty().append(friends)
+
+  query: ->
+    $("#search").val()
 
   loggedin: ->
     @collection.fetch()
@@ -20,11 +23,8 @@ class AppView extends Backbone.View
     @collection.empty()
     @render()
 
-  search: ->
-    @render()
-
   events:
-    'keyup #search': 'search'
+    'keyup #search': 'render'
 
 
 window.appView = new AppView

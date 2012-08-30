@@ -13,15 +13,13 @@
       %input#search.input-xlarge{:type=>"text", :placeholder=>"Find friends"}
     %ul.unstyled
 %script#user-template{type: "text/template"}
-  %li
-    %p.navbar-text
-      <img src="<%= avatar() %>" alt="<%= get('name') %>" class="avatar"/>
-      <%= get('name') %>
   %li.dropdown
     %a.dropdown-toggle{:href=>"#", "data-toggle"=>"dropdown"}
+      <img src="<%= avatar() %>" alt="<%= get('name') %>" class="avatar"/>
+      <%= get('name') %>
       %b.caret
-    %ul.dropdown-menu
-      %li
-        %a{href: "#logout"}
-          Logout
+      %ul.dropdown-menu
+        %li
+          %a{href: "#logout"}
+            Logout
 

@@ -1,6 +1,7 @@
 class Router extends Backbone.Router
   routes:
     "friends": "friends",
+    "friends/:id": "friend"
     "": "start",
     "login": "login",
     "logout": "logout"
@@ -9,6 +10,9 @@ class Router extends Backbone.Router
     @loggedIn ->
       window.friendsView.fetch()
       window.friendsView.render()
+
+  friend: (id) ->
+    alert(id)
 
   login: ->
     @navigate('friends',{replace: true,trigger: true})

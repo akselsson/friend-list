@@ -7,7 +7,7 @@ class UserView extends Backbone.View
     window.dispatcher.on('loggedout',@loggedout,this)
 
   render: ->
-    template = _.template $('#user-template').html(), @model.attributes
+    template = _.template $('#user-template').html(), @model
     @$el.html(template).show()
 
   loggedin: ->

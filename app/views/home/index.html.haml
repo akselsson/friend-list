@@ -1,5 +1,16 @@
-%article#friends
-  %h1 Friends
-  %p
-    %input#search.input-xlarge{:type=>"text", :placeholder=>"Find friends"}
-  %ul.unstyled
+.main
+%script#start-template{type: "text/template"}
+  .hero-unit
+    %h1 Find friends
+    %p Tagline
+    %p
+      %a#login
+        Login
+%script#friends-template{type: "text/template"}
+  %article#friends
+    %h1 Friends
+    %p
+      %input#search.input-xlarge{:type=>"text", :placeholder=>"Find friends"}
+    %ul.unstyled
+
+

@@ -16,3 +16,5 @@
 //= require underscore
 //= require backbone
 //= require_tree .
+
+Backbone.history.start()

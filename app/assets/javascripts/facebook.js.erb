@@ -6,15 +6,6 @@ window.fbAsyncInit = function() {
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
-
-  FB.Event.subscribe('auth.authResponseChange', function(response) {
-    if(response.status == "connected") {
-      window.friendsView.trigger('loggedin')
-    }
-    else {
-      window.friendsView.trigger('loggedout')
-    }
-  });
 };
 
 (function(d){

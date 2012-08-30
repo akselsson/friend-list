@@ -1,12 +1,21 @@
 class Router extends Backbone.Router
   routes:
     "friends": "friends",
-    "": "start"
+    "": "start",
+    "login": "login",
+    "logout": "logout"
 
   friends: ->
     @loggedIn ->
       window.friendsView.fetch()
       window.friendsView.render()
+
+  login: ->
+    @navigate('friends',{replace: true,trigger: true})
+
+  logout: ->
+    FB.logout =>
+      @navigate('',{replace:true, trigger: true})
 
   start: ->
     window.startView.render()

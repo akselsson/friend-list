@@ -25,4 +25,10 @@ body { padding-top: 60px; }
   }
 }
 
+#current-user {
+  .avatar {
+    height: 25px;
+  }
+}
+
 @import "bootstrap-responsive";

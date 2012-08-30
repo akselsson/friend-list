@@ -11,8 +11,8 @@ class FriendsView extends Backbone.View
     @search()
 
   search: ->
-    friends = @collection.search(@query()).map (d) -> 
-      '<li class="lead"><img class="avatar" src="' + d.avatar() + '" alt="' + d.get('name') + ' "><span class="name">' + d.get('name') + '</span></li>'
+    friends = @collection.search(@query()).map (friend) ->
+      new window.FriendView(model: friend).render()
     $(@el).find('ul').empty().append(friends)
 
 

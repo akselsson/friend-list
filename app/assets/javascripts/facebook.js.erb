@@ -11,6 +11,15 @@ window.fbAsyncInit = function() {
     window.server.connect()
   });
 
+  FB.Event.subscribe('auth.authResponseChange',function(response){
+    if(response.status == 'connected') {
+      window.dispatcher.trigger('loggedin')
+    }
+    else{
+      window.dispatcher.trigger('loggedout')
+    }
+  });
+
 };
 
 (function(d){

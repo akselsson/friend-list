@@ -14,9 +14,9 @@ class Server
 
   sync: (method,model,options) ->
     return options.error("Method " + method + " is not supported") unless method == "read"
-    window.server.whenConnected ->
-      FB.api model.url, (response) =>
-        options.success(_.values(response.data))
+    FB.api model.url, (response) =>
+
+      options.success(if response.data then _.values(response.data) else response)
 
 window.server = new Server
 

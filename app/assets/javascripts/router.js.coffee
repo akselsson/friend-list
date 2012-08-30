@@ -12,12 +12,15 @@ class Router extends Backbone.Router
     window.startView.render()
 
   loggedIn: (action) ->
-    window.sync.whenConnected ->
-      FB.getLoginStatus (response) ->
+    window.server.whenConnected =>
+      FB.getLoginStatus (response) =>
         if response.status == "connected"
           action()
         else
           FB.login (response) =>
-            action() if response.status == connected()
+            if response.status == "connected"
+              action()
+            else
+              @navigate('',{trigger: true})
 
 window.applicationRouter = new Router

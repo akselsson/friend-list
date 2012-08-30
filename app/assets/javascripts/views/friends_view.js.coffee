@@ -3,7 +3,7 @@ class FriendsView extends Backbone.View
 
   initialize: ->
     @collection = new window.Friends
-    @collection.bind 'reset', @render, this
+    @collection.bind 'reset', @search, this
 
   render: ->
     template = _.template $('#friends-template').html(), {}

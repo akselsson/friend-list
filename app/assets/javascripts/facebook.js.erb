@@ -6,6 +6,13 @@ window.fbAsyncInit = function() {
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
+
+  FB.getLoginStatus(function(){
+    window.sync.connect()
+  });
+
+
+
 };
 
 (function(d){

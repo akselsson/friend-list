@@ -9,7 +9,6 @@ class StartView extends Backbone.View
     "click #login": "login"
 
   login: ->
-    FB.login (response) =>
-      window.applicationRouter.navigate('friends',{trigger:true})
+    window.applicationRouter.navigate('friends',{trigger:true})
 
 window.startView = new StartView

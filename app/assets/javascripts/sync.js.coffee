@@ -12,6 +12,24 @@ class Server
     return action() if @connected
     @actions.push(action)
 
+  login: (success,fail) ->
+    @whenConnected =>
+      FB.getLoginStatus (response) =>
+        if response.status == "connected"
+          success()
+        else
+          FB.login( (response) =>
+            if response.status == "connected"
+              success()
+            else
+              fail()
+          , scope: 'friends_birthday,friends_about_me')
+
+  logout: (success) ->
+    @whenConnected ->
+      FB.logout ->
+        success()
+
   sync: (method,model,options) ->
     return options.error("Method " + method + " is not supported") unless method == "read"
     FB.api model.url(), (response) =>

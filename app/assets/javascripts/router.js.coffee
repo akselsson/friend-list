@@ -19,26 +19,17 @@ class Router extends Backbone.Router
         window.friendDetailsView.render()
 
   login: ->
-    @navigate('friends',{replace: true,trigger: true})
+    @loggedIn =>
+      @navigate('friends',{replace: true,trigger: true})
 
   logout: ->
-    FB.logout =>
+    window.server.logout =>
       @navigate('',{replace:true, trigger: true})
 
   start: ->
     window.startView.render()
 
   loggedIn: (action) ->
-    window.server.whenConnected =>
-      FB.getLoginStatus (response) =>
-        if response.status == "connected"
-          action()
-        else
-          FB.login( (response) =>
-            if response.status == "connected"
-              action()
-            else
-              @navigate('',{trigger: true})
-          , scope: 'friends_birthday,friends_about_me')
+    window.server.login action, => @navigate('',{trigger: true})
 
 window.applicationRouter = new Router

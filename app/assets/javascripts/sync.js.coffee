@@ -1,17 +1,18 @@
 class FacebookBackend
   constructor: ->
     @actions = []
-    @connected = false
-    window.dispatcher.on 'facebook:initialized', => @connect()
+    @initialized = false
+
+    window.dispatcher.on 'facebook:initialized', => @initialize()
     window.dispatcher.on 'loggedin', => @loggedin = true
     window.dispatcher.on 'loggedout', => @loggedin = false
 
-  whenConnected: (action) ->
-    return action() if @connected
+  whenInitialized: (action) ->
+    return action() if @initialized
     @actions.push(action)
 
   login: (success,fail) ->
-    @whenConnected =>
+    @whenInitialized =>
       return success() if @loggedin
       FB.login( (response) =>
         if response.status == "connected"
@@ -21,12 +22,12 @@ class FacebookBackend
       , scope: 'friends_birthday,friends_about_me')
 
   logout: (success) ->
-    @whenConnected ->
+    @whenInitialized ->
       FB.logout ->
         success()
 
-  connect: ->
-    @connected = true
+  initialize: ->
+    @initialized = true
     _.each @actions, (action) -> action()
     @actions = []
 

@@ -7,9 +7,6 @@ window.fbAsyncInit = function() {
     xfbml      : true  // parse XFBML
   });
 
-  FB.getLoginStatus(function(){
-    window.server.connect()
-  });
 
   FB.Event.subscribe('auth.authResponseChange',function(response){
     if(response.status == 'connected') {
@@ -18,6 +15,10 @@ window.fbAsyncInit = function() {
     else{
       window.dispatcher.trigger('loggedout')
     }
+  });
+  
+  FB.getLoginStatus(function(){
+    window.dispatcher.trigger('facebook:initialized')
   });
 
 };

@@ -12,7 +12,11 @@ class Router extends Backbone.Router
       window.friendsView.render()
 
   friend: (id) ->
-    alert(id)
+    @loggedIn ->
+      friend = new window.Friend id: id
+      friend.fetch success: ->
+        window.friendDetailsView.model = friend
+        window.friendDetailsView.render()
 
   login: ->
     @navigate('friends',{replace: true,trigger: true})
@@ -30,10 +34,11 @@ class Router extends Backbone.Router
         if response.status == "connected"
           action()
         else
-          FB.login (response) =>
+          FB.login( (response) =>
             if response.status == "connected"
               action()
             else
               @navigate('',{trigger: true})
+          , scope: 'friends_birthday,friends_about_me')
 
 window.applicationRouter = new Router

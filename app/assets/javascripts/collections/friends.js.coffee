@@ -2,7 +2,7 @@
 
 class window.Friends extends Backbone.Collection
   model: window.Friend
-  url: '/me/friends'
+  url: -> '/me/friends'
 
   search: (query) ->
     @filter (friend) ->

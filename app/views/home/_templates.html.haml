@@ -9,15 +9,32 @@
 
 %script#friends-template{type: "text/template"}
   %article#friends
-    %h1 My Friends
+    .page-header
+      %h1 My Friends
     %p
       %input#search.input-xlarge{:type=>"text", :placeholder=>"Filter by name"}
     %ul.unstyled
+    #friend-details
 
 %script#friend-template{type: "text/template"}
+  <a href="#friends/<%= id %>">
   <img src="<%= avatar() %>" alt="<%= get('name') %>" class="avatar"/>
   %span.name
     <%= get('name') %>
+  </a>
+
+%script#friend-details-template{type: "text/template"}
+  <img src="<%= avatar('large') %>" class="img-polaroid pull-right"/>
+  .page-header
+    %h1
+      <%= get('name') %>
+  %p
+    <%= get('bio') %>
+  %dl
+    <% if(get('birthday')) { %>
+    %dt Birthday
+    %dd <%= get('birthday') %>
+    <% } %>
 
 %script#user-template{type: "text/template"}
   %li.dropdown

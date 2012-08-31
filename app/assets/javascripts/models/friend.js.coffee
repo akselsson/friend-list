@@ -1,3 +1,6 @@
 class window.Friend extends Backbone.Model
-  avatar: ->
-    'https://graph.facebook.com/' + @get('id') + '/picture'
+  url: ->
+    '/' + @id
+  avatar: (size) ->
+    size = size || 'square'
+    'https://graph.facebook.com/' + @get('id') + '/picture?type=' + size

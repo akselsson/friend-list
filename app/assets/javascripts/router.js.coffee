@@ -23,13 +23,13 @@ class Router extends Backbone.Router
       @navigate('friends',{replace: true,trigger: true})
 
   logout: ->
-    window.server.logout =>
+    window.backend.logout =>
       @navigate('',{replace:true, trigger: true})
 
   start: ->
     window.startView.render()
 
   loggedIn: (action) ->
-    window.server.login action, => @navigate('',{trigger: true})
+    window.backend.login action, => @navigate('',{trigger: true})
 
 window.applicationRouter = new Router

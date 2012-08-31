@@ -1,3 +1,4 @@
+#= require dispatcher
 class FacebookBackend
   constructor: ->
     @actions = []
@@ -36,6 +37,6 @@ class FacebookBackend
     FB.api model.url(), (response) =>
       options.success(if response.data then _.values(response.data) else response)
 
-window.server = new FacebookBackend
+window.backend = new FacebookBackend
 
-Backbone.sync = window.server.sync
+Backbone.sync = window.backend.sync

@@ -1,8 +1,8 @@
-class FriendsView extends Backbone.View
+class App.FriendsView extends Backbone.View
   el: $ '.main'
 
   initialize: ->
-    @collection = new window.Friends
+    @collection = new App.Friends
     @collection.bind 'reset', @search, this
 
   render: ->
@@ -12,7 +12,7 @@ class FriendsView extends Backbone.View
 
   search: ->
     friends = @collection.search(@query()).map (friend) ->
-      new window.FriendView(model: friend).render()
+      new App.FriendView(model: friend).render()
     $(@el).find('ul').empty().append(friends)
 
 
@@ -26,4 +26,3 @@ class FriendsView extends Backbone.View
     'keyup #search': 'search'
 
 
-window.friendsView = new FriendsView

@@ -1,10 +1,10 @@
-class UserView extends Backbone.View
+class App.UserView extends Backbone.View
   el: $ '#current-user'
-  model: new window.User
+  model: new App.User
   initialize: ->
     @loggedout()
-    window.dispatcher.on('loggedin',@loggedin,this)
-    window.dispatcher.on('loggedout',@loggedout,this)
+    App.dispatcher.on('loggedin',@loggedin,this)
+    App.dispatcher.on('loggedout',@loggedout,this)
 
   render: ->
     template = _.template $('#user-template').html(), @model
@@ -16,4 +16,3 @@ class UserView extends Backbone.View
   loggedout: ->
     @$el.hide()
 
-window.userView = new UserView

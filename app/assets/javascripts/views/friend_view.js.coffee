@@ -1,4 +1,4 @@
-class window.FriendView extends Backbone.View
+class App.FriendView extends Backbone.View
   tagName: 'li'
 
   render: ->

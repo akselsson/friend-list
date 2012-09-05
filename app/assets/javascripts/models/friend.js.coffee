@@ -1,4 +1,4 @@
-class window.Friend extends Backbone.Model
+class App.Friend extends Backbone.Model
   url: ->
     '/' + @id
   avatar: (size) ->

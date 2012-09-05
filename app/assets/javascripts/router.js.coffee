@@ -1,4 +1,4 @@
-class Router extends Backbone.Router
+class App.Router extends Backbone.Router
   routes:
     "friends": "friends",
     "friends/:id": "friend"
@@ -13,7 +13,7 @@ class Router extends Backbone.Router
 
   friend: (id) ->
     @loggedIn ->
-      friend = new window.Friend id: id
+      friend = new App.Friend id: id
       friend.fetch success: ->
         window.friendDetailsView.model = friend
         window.friendDetailsView.render()
@@ -32,4 +32,3 @@ class Router extends Backbone.Router
   loggedIn: (action) ->
     window.backend.login action, => @navigate('',{trigger: true})
 
-window.applicationRouter = new Router

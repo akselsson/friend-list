@@ -1,12 +1,11 @@
-#= require dispatcher
-class FacebookBackend
-  constructor: ->
+class App.FacebookBackend
+  constructor: (@dispatcher) ->
     @actions = []
     @initialized = false
 
-    window.dispatcher.on 'facebook:initialized', => @initialize()
-    window.dispatcher.on 'loggedin', => @loggedin = true
-    window.dispatcher.on 'loggedout', => @loggedin = false
+    @dispatcher.on 'facebook:initialized', => @initialize()
+    @dispatcher.on 'loggedin', => @loggedin = true
+    @dispatcher.on 'loggedout', => @loggedin = false
 
   whenInitialized: (action) ->
     return action() if @initialized
@@ -37,6 +36,4 @@ class FacebookBackend
     FB.api model.url(), (response) =>
       options.success(if response.data then _.values(response.data) else response)
 
-window.backend = new FacebookBackend
 
-Backbone.sync = window.backend.sync

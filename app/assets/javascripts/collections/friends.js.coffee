@@ -1,7 +1,7 @@
 #= require models/friend
 
-class window.Friends extends Backbone.Collection
-  model: window.Friend
+class App.Friends extends Backbone.Collection
+  model: App.Friend
   url: -> '/me/friends'
   comparator: (friend) ->
     friend.get('name')

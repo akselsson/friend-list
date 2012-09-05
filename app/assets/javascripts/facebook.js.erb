@@ -10,15 +10,15 @@ window.fbAsyncInit = function() {
 
   FB.Event.subscribe('auth.authResponseChange',function(response){
     if(response.status == 'connected') {
-      window.dispatcher.trigger('loggedin')
+      App.dispatcher.trigger('loggedin')
     }
     else{
-      window.dispatcher.trigger('loggedout')
+      App.dispatcher.trigger('loggedout')
     }
   });
   
   FB.getLoginStatus(function(){
-    window.dispatcher.trigger('facebook:initialized')
+    App.dispatcher.trigger('facebook:initialized')
   });
 
 };

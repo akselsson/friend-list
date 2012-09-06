@@ -35,5 +35,3 @@ class App
 
 window.App = new App
 
-$(document).ready ->
-  window.App.init()

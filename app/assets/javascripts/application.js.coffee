@@ -19,17 +19,19 @@
 #= require_tree .
 
 class App
+  dispatcher: _.clone(Backbone.Events)
+
   init: ->
     window.friendsView = new @FriendsView
     window.userView = new @UserView
     window.startView = new @StartView
+    window.friendDetailsView = new @FriendDetailsView
     window.backend = new @FacebookBackend(@dispatcher)
     window.applicationRouter = new @Router
-    
+
     Backbone.sync = window.backend.sync
     Backbone.history.start()
 
-  dispatcher: _.clone(Backbone.Events)
 
 window.App = new App
 

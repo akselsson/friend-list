@@ -5,4 +5,3 @@ class App.FriendDetailsView extends Backbone.View
     template = _.template $('#friend-details-template').html(), @model
     $(@el).html(template)
 
-window.friendDetailsView = new App.FriendDetailsView

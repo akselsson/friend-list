@@ -16,6 +16,9 @@ group :production do
   gem 'pg'
 end
 
+group :test, :development do
+  gem 'jasmine-rails'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

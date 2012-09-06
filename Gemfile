@@ -10,6 +10,10 @@ gem 'backbone-rails'
 
 group :development do
   gem 'sqlite3'
+  gem 'guard'
+  gem 'rb-fsevent'
+  gem 'terminal-notifier-guard'
+  gem 'guard-jasmine-headless-webkit'
 end
 
 group :production do
